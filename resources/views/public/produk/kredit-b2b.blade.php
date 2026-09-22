@@ -1,0 +1,581 @@
+@extends('layouts.public')
+
+@section('title', 'Bank Waway Lampung - Kredit B2B')
+
+@section('styles')
+<style>
+  .tab-panel {
+    display: none;
+  }
+
+  .tab-panel.active {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tab-product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab-product-item,
+  .tab-formdana-btn {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
+    color: var(--navy, #1e3a8a);
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: left;
+    line-height: 1.35;
+  }
+
+  .tab-product-item .ic,
+  .tab-formdana-btn .ic {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .tab-product-item:hover,
+  .tab-formdana-btn:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .tab-product-item.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  }
+
+  .tab-formdana-btn {
+    grid-template-columns: 32px 1fr auto;
+    margin: 10px 0 20px;
+    background: #ffffff;
+    color: var(--navy, #1e3a8a);
+  }
+
+  .tab-formdana-btn .arrow-ic {
+    font-size: 14px;
+    color: #2563eb;
+    transition: transform 0.2s ease;
+  }
+
+  .tab-formdana-btn:hover .arrow-ic {
+    transform: translateX(3px);
+  }
+
+  .kp-detail-top h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .kp-detail-top p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .b2b-top-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .fasilitas-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fasilitas-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .fasilitas-head .ic-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #eef4ff;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+
+  .fasilitas-card>p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .fasilitas-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: auto;
+  }
+
+  .fasilitas-stat {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .fasilitas-stat .lbl {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .fasilitas-stat .val {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+
+  .fasilitas-stat .sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .suku-bunga-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .suku-bunga-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15.5px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  .suku-bunga-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, .08);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+
+  .suku-bunga-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .suku-bunga-row .lbl {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #93c5fd;
+    margin-bottom: 6px;
+  }
+
+  .suku-bunga-row .val {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .suku-bunga-row .arrow {
+    font-size: 16px;
+    color: #93c5fd;
+  }
+
+  .kp-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .kp-info-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+  }
+
+  .kp-info-panel .kp-panel-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 18px;
+  }
+
+  .syarat-list li {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .syarat-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .syarat-list .li-ic {
+    color: var(--blue);
+    font-size: 14px;
+    flex: none;
+    margin-top: 1px;
+  }
+
+  .dokumen-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .dokumen-item2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .dokumen-item2 .ic {
+    font-size: 15px;
+    flex: none;
+  }
+
+  .dokumen-item2 span.txt {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .b2b-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #eef4ff;
+    border: 1px solid #d7e6fd;
+    border-radius: var(--radius);
+    padding: 26px 30px;
+  }
+
+  .b2b-cta-banner h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .b2b-cta-banner p {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 420px;
+  }
+
+  .b2b-cta-actions {
+    display: flex;
+    gap: 12px;
+    flex: none;
+  }
+
+  .btn-navy-solid {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 13px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .btn-navy-solid:hover {
+    background: #1e293b;
+  }
+
+  .btn-outline-navy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 13px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .btn-outline-navy:hover {
+    background: #f1f5f9;
+  }
+
+  @media(max-width: 900px) {
+    .b2b-top-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .fasilitas-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .kp-bottom-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dokumen-grid2 {
+      grid-template-columns: 1fr;
+    }
+
+    .b2b-cta-banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .b2b-cta-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+</style>
+@endsection
+
+@section('content')
+
+<div class="breadcrumb-row">
+  <div class="container">
+    <a href="{{ route('home') }}">Beranda</a> <span class="sep">›</span>
+    <a href="{{ route('public.kredit.pinjaman') }}">Produk</a> <span class="sep">›</span>
+    <a href="{{ route('public.kredit.pinjaman') }}">Pinjaman</a> <span class="sep">›</span>
+    <strong>Kredit B2B</strong>
+  </div>
+</div>
+
+<section class="hero">
+  <img class="hero-bg" src="{{ asset('frontend/images/kredit-konsumer.jpg') }}" alt="Kredit B2B">
+  <div class="container">
+    <h1>Kredit Back to Back (B2B)</h1>
+    <p>Fasilitas pembiayaan eksklusif dengan jaminan deposito, memberikan Anda likuiditas cepat tanpa harus
+      mencairkan aset investasi berharga Anda.</p>
+    <div class="hero-actions">
+      <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+        target="_blank" rel="noopener" class="btn btn-primary">Ajukan Sekarang →</a>
+    </div>
+  </div>
+</section>
+
+<section class="tab-section" id="detail">
+  <div class="container tab-wrap">
+
+    <aside class="tab-sidebar">
+      <h4>Produk Kami</h4>
+      <p class="tab-sidebar-sub">Solusi Perbankan Terpercaya</p>
+
+      <ul class="tab-product-list">
+        <li>
+          <a href="{{ route('public.kredit.kredit-konsumer') }}" class="tab-product-item">
+            <span class="ic">💳</span>
+            <span>Kredit Pegawai <br>(PNS/BUMD)</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-pppk') }}" class="tab-product-item">
+            <span class="ic">📇</span>
+            <span>Kredit PPPK</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-pppk-paruh-waktu') }}" class="tab-product-item">
+            <span class="ic">⏱</span>
+            <span>Kredit PPPK Paruh Waktu</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-tukin') }}" class="tab-product-item">
+            <span class="ic">💎</span>
+            <span>Kredit Tukin</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-b2b') }}" class="tab-product-item active">
+            <span class="ic">🔗</span>
+            <span>Kredit B2B</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-prapensiun') }}" class="tab-product-item">
+            <span class="ic">⏳</span>
+            <span>Kredit Prapensiun</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-pensiun') }}" class="tab-product-item">
+            <span class="ic">🧓</span>
+            <span>Kredit Pensiun</span>
+          </a>
+        </li>
+      </ul>
+
+      <a href="https://script.google.com/macros/s/AKfycbzCoxyMx3HMzXGYa3f9OGP2os-UNWfQoYgg3G1Ef1U8hhgvFbMvyybEvZAUQfZ2xBYW/exec"
+        class="tab-formdana-btn">
+        <span class="ic">📝</span>
+        <span>Form Dana Ceria</span>
+      </a>
+
+      <div class="tab-help-card">
+        <h5>🎧 Butuh Bantuan?</h5>
+        <p>Tim spesialis kami siap membantu menjelaskan produk yang tepat untuk Anda.</p>
+        <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+          target="_blank" rel="noopener" class="btn-tel">Hubungi Kami</a>
+      </div>
+    </aside>
+
+    <div class="tab-content">
+
+      <div class="tab-panel active" id="panel-b2b">
+
+        <div class="tab-detail-card kp-detail-top">
+          <div>
+            <h2>Kredit Back to Back (B2B)</h2>
+            <p>Fasilitas pembiayaan eksklusif dengan jaminan deposito, memberikan Anda likuiditas
+              cepat tanpa harus mencairkan aset investasi berharga Anda.</p>
+          </div>
+        </div>
+
+        <div class="b2b-top-grid">
+          <div class="fasilitas-card">
+            <div class="fasilitas-head"><span class="ic-box">ⓘ</span> Tentang Fasilitas</div>
+            <p>Kredit Back to Back adalah solusi perbankan cerdas bagi Anda yang membutuhkan dana
+              mendesak namun tetap ingin menjaga pertumbuhan aset deposito Anda di BPR Waway
+              Lampung. Jaminan berupa bilyet deposito memberikan kemudahan proses persetujuan yang
+              instan dan suku bunga yang sangat kompetitif.</p>
+            <div class="fasilitas-stats">
+              <div class="fasilitas-stat">
+                <div class="lbl">Plafond Maksimal</div>
+                <div class="val">90% Nominal</div>
+                <div class="sub">Dari total nilai Deposito</div>
+              </div>
+              <div class="fasilitas-stat">
+                <div class="lbl">Jangka Waktu</div>
+                <div class="val">1 - 60 Bulan</div>
+                <div class="sub">Fleksibel sesuai kebutuhan</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="suku-bunga-card">
+            <div class="suku-bunga-head">% Suku Bunga</div>
+            <div class="suku-bunga-row">
+              <div>
+                <div class="lbl">B2B FLAT</div>
+                <div class="val">Bunga Deposito + 2%</div>
+              </div>
+              <span class="arrow">→</span>
+            </div>
+            <div class="suku-bunga-row">
+              <div>
+                <div class="lbl">B2B SLIDING</div>
+                <div class="val">Bunga Deposito + 3%</div>
+              </div>
+              <span class="arrow">📊</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kp-bottom-grid">
+          <div class="kp-info-panel">
+            <div class="kp-panel-head">☑ Persyaratan</div>
+            <ul class="syarat-list">
+              <li><span class="li-ic">✔</span> Memiliki simpanan deposito atas nama pribadi di Bank Waway Lampung.</li>
+              <li><span class="li-ic">✔</span> Agunan berupa Bilyet Deposito asli atas nama pemohon sendiri.</li>
+            </ul>
+          </div>
+
+          <div class="kp-info-panel">
+            <div class="kp-panel-head">📁 Dokumen Diperlukan</div>
+            <div class="dokumen-grid2">
+              <div class="dokumen-item2"><span class="ic">🪪</span><span class="txt">KTP Pemohon</span></div>
+              <div class="dokumen-item2"><span class="ic">📃</span><span class="txt">NPWP Pribadi</span></div>
+              <div class="dokumen-item2"><span class="ic">📄</span><span class="txt">Asli Bilyet Deposito</span></div>
+              <div class="dokumen-item2"><span class="ic">✍️</span><span class="txt">Surat Kuasa Pencairan</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="b2b-cta-banner">
+          <div>
+            <h3>Siap untuk Mengajukan Kredit?</h3>
+            <p>Proses cepat, mudah, dan aman dengan jaminan simpanan Anda.</p>
+          </div>
+          <div class="b2b-cta-actions">
+            <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+              target="_blank" rel="noopener" class="btn-navy-solid">Ajukan Sekarang</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+@endsection

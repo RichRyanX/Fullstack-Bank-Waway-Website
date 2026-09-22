@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Waway Lampung - Laporan Keberlanjutan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Perbaikan Responsif Khusus Halaman Laporan Keberlanjutan -->
+  <style>
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* Pengaman: paksa margin/padding container pada halaman ini,
+       tidak bergantung pada file css/style.css eksternal */
+    .kb-page section.section>.container {
+      box-sizing: border-box !important;
+      width: 100% !important;
+      max-width: 1200px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+    }
+
+    .kb-head-image {
+      overflow: hidden;
+    }
+
+    .kb-head-photo {
+      border-radius: 12px;
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(160deg, #dbe4f5, #9fb0d6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .kb-cover-card .cover-img {
+      background: linear-gradient(160deg, #dbe4f5, #b7c2dc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 12px;
+    }
+
+    @media(max-width:640px) {
+      .kb-page section.section>.container {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
+
+      .kb-head-grid {
+        padding: 28px 0;
+        gap: 24px;
+      }
+
+      .kb-head-grid h1 {
+        font-size: 22px;
+      }
+
+      .kb-head-grid p {
+        font-size: 14px;
+        max-width: 100%;
+      }
+
+      .esg-grid {
+        padding: 32px 0 40px;
+      }
+
+      .kb-arsip-header {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+
+    @media(max-width:420px) {
+      .kb-page section.section>.container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+      }
+
+      .kb-head-grid h1 {
+        font-size: 20px;
+      }
+
+      .kb-head-photo {
+        height: 200px;
+      }
+
+      .kb-cover-card .cover-img {
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+
+<body class="kb-page">
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand">
+        <img src="https://www.bankwawaylampung.com/public/assetGuest/img/logo-website.png" alt="Logo" width="200"
+          height="50">
+        <rect width="40" height="40" rx="9" fill="#9E1B22" />
+        <path
+          d="M11 27V13h7.2c3 0 5 1.6 5 4.1 0 1.7-1 2.9-2.4 3.4 1.7.5 2.8 1.8 2.8 3.7 0 2.7-2.1 4.3-5.3 4.3H11h0Zm4-8.4h2.6c1.2 0 1.9-.6 1.9-1.6s-.7-1.6-1.9-1.6H15v3.2Zm0 5.9h2.9c1.4 0 2.2-.6 2.2-1.8s-.8-1.8-2.2-1.8H15v3.6Z"
+          fill="#fff" />
+        </svg>
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Beranda</a></li>
+          <li class="has-dropdown">
+            <a href="#">Produk</a>
+            <ul class="dropdown">
+              <li><a href="deposito.html">Deposito</a></li>
+              <li><a href="pinjaman.html">Pinjaman</a></li>
+              <li><a href="tabungan.html">Tabungan</a></li>
+            </ul>
+          </li>
+          <li><a href="Profil.html">Profil</a></li>
+          <li><a href="informasi.html">Informasi</a></li>
+          <li class="has-dropdown">
+            <a href="#">Laporan</a>
+            <ul class="dropdown">
+              <li><a href="laporan tahunan.html">Laporan Tahunan</a></li>
+              <li><a href="laporan keberlanjutan.html" class="active">Laporan Keberlanjutan</a></li>
+              <li><a href="publikasi.html">Laporan Publikasi</a></li>
+              <li><a href="tata kelola.html">Tata Kelola / GCG</a></li>
+              <li><a href="pelayanan.html">Pelayanan</a></li>
+            </ul>
+          </li>
+          <li><a href="bantuan.html">Bantuan</a></li>
+        </ul>
+      </nav>
+      <div class="navbar-actions">
+        <a href="karir.html" class="nav-extra">Karier</a>
+        <a href="pelayanan.html#wbs" class="btn-wbs">WBS</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HEADER + HERO IMAGE ===== -->
+  <section class="section" style="padding-bottom:0">
+    <div class="container kb-head-grid">
+      <div>
+        <h1>Laporan Keberlanjutan</h1>
+        <p>Bank Waway Lampung berkomitmen untuk menjalankan operasional perbankan yang bertanggung jawab dan
+          berkelanjutan. Transparansi adalah kunci dalam perjalanan kami mewujudkan dampak positif bagi lingkungan dan
+          masyarakat.</p>
+      </div>
+      <div class="kb-head-image">
+        <div class="kb-head-photo">🌿 Kantor Hijau Bank Waway Lampung</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PILAR ESG ===== -->
+  <section class="section" style="background:var(--bg-soft)">
+    <div class="container esg-grid">
+      <div class="esg-card e">
+        <div class="ic">🌿</div>
+        <h4>Lingkungan (E)</h4>
+        <p>Mengurangi jejak karbon operasional melalui digitalisasi layanan dan pembiayaan proyek-proyek ramah
+          lingkungan di Lampung.</p>
+      </div>
+      <div class="esg-card s">
+        <div class="ic">👥</div>
+        <h4>Sosial (S)</h4>
+        <p>Mendorong inklusi keuangan bagi UMKM lokal dan mendukung pemberdayaan masyarakat melalui program CSR yang
+          berkelanjutan.</p>
+      </div>
+      <div class="esg-card g">
+        <div class="ic">⚖️</div>
+        <h4>Tata Kelola (G)</h4>
+        <p>Menjunjung tinggi standar etika bisnis, transparansi laporan, dan manajemen risiko yang kokoh untuk
+          kepercayaan nasabah.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARSIP LAPORAN ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="kb-arsip-header">
+        <h2>Arsip Laporan Tahunan</h2>
+        <div class="view-toggle">
+          <button class="active" aria-label="Tampilan grid">⊞</button>
+        </div>
+      </div>
+
+      <div class="kb-cover-grid">
+        <div class="kb-cover-card">
+          <div class="cover-img">📄 Laporan 2023</div>
+          <div class="kb-cover-body">
+            <h5>Laporan 2023</h5>
+            <span class="sub">Keberlanjutan &amp; Inovasi</span>
+            <a href="#" class="kb-dl-btn solid">⬇ Download PDF</a>
+          </div>
+        </div>
+        <div class="kb-cover-card">
+          <div class="cover-img">📄 Laporan 2022</div>
+          <div class="kb-cover-body">
+            <h5>Laporan 2022</h5>
+            <span class="sub">Komitmen Masa Depan</span>
+            <a href="#" class="kb-dl-btn outline">⬇ Download PDF</a>
+          </div>
+        </div>
+        <div class="kb-cover-card">
+          <div class="cover-img">📄 Laporan 2021</div>
+          <div class="kb-cover-body">
+            <h5>Laporan 2021</h5>
+            <span class="sub">Resiliensi Ekonomi</span>
+            <a href="#" class="kb-dl-btn outline">⬇ Download PDF</a>
+          </div>
+        </div>
+        <div class="kb-cover-card">
+          <div class="cover-img">📄 Laporan 2020</div>
+          <div class="kb-cover-body">
+            <h5>Laporan 2020</h5>
+            <span class="sub">Adaptasi &amp; Solidaritas</span>
+            <a href="#" class="kb-dl-btn outline">⬇ Download PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h5>Bank Waway Lampung</h5>
+          <p>📍 <a href="https://maps.app.goo.gl/XXQFDXPrbKguNWnZ9?g_st=aw" target="_blank" rel="noopener">Jl.
+              Diponegoro No.28, Gulak Galik, Kec. Tlk. Betung Utara, Kota Bandar Lampung, Lampung 35212</a></p>
+          <p>📞 <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+              target="_blank" rel="noopener">+0721 266 869</a></p>
+          <p>✉️ <a href="mailto:Bankwawaylampung@yahoo.com">Bankwawaylampung@yahoo.com</a></p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/BankWawayLampung/" target="_blank" rel="noopener"
+              aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/bankwawaylampung/" target="_blank" rel="noopener"
+              aria-label="Instagram">◎</a>
+            <a href="https://wa.me/6285382659996" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+          </div>
+        </div>
+        <div>
+          <h6>Tautan Cepat</h6>
+          <ul>
+            <li><a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                Nasabah</a></li>
+            <li><a href="tempat-kedudukan.html">Lokasi Kantor Kas</a></li>
+            <li><a href="deposito.html#simulasi">Suku Bunga</a></li>
+            <li><a href="karir.html">Karir</a></li>
+            <li><a href="wbs.html">Whistleblowing System</a></li>
+          </ul>
+        </div>
+        <div>
+          <h6>Produk</h6>
+          <ul>
+            <li><a href="tabungan.html">Tabungan</a></li>
+            <li><a href="pinjaman.html">Pinjaman</a></li>
+            <li><a href="deposito.html">Deposito</a></li>
+            <li><a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                Digital</a></li>
+            <li><a href="#">iBanking</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Bank Waway Lampung. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

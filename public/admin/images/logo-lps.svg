@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="lpsGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f6bb5"/>
+      <stop offset="1" stop-color="#0a4a80"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="96" fill="url(#lpsGrad)"/>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.35"/>
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <!-- Shield emblem -->
+  <path d="M100 52 L132 66 V100 C132 128 118 142 100 150 C82 142 68 128 68 100 V66 Z"
+        fill="#ffffff" opacity="0.95"/>
+  <path d="M100 66 L122 76 V100 C122 120 112 132 100 138 C88 132 78 120 78 100 V76 Z"
+        fill="#f58220"/>
+  <!-- LPS letters -->
+  <text x="100" y="112" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#0a4a80">LPS</text>
+  <!-- Top text -->
+  <text x="100" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#ffffff" letter-spacing="4">LPS</text>
+  <!-- Bottom text -->
+  <text x="100" y="182" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#ffffff" letter-spacing="1">LEMBAGA PENJAMIN SIMPANAN</text>
+</svg>

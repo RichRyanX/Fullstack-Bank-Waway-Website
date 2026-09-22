@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Waway Lampung - Kredit UMKM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Style tambahan khusus halaman Kredit UMKM -->
+    <style>
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ====== Detail Fasilitas Kredit ====== */
+        .ku-section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 4px 0 18px;
+        }
+
+        .ku-fasilitas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 8px;
+        }
+
+        .ku-fasilitas-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px 24px;
+        }
+
+        .ku-fasilitas-ic {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .ku-fasilitas-card h3 {
+            font-size: 15.5px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .ku-fasilitas-card>p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .ku-fasilitas-val {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .ku-fasilitas-note {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .ku-bunga-table {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .ku-bunga-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-top: 1px solid var(--border);
+            font-size: 13.5px;
+        }
+
+        .ku-bunga-row:first-child {
+            border-top: none;
+        }
+
+        .ku-bunga-row span:first-child {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .ku-bunga-row span:last-child {
+            color: var(--navy);
+            font-weight: 800;
+        }
+
+        /* ====== Persyaratan & Dokumen ====== */
+        .ku-req-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 8px;
+        }
+
+        .ku-req-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px 26px 30px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .ku-req-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .ku-req-head .ic {
+            font-size: 18px;
+            color: var(--blue);
+        }
+
+        .ku-req-head h3 {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .ku-check-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .ku-check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--text);
+            line-height: 1.55;
+        }
+
+        .ku-check-list .li-ic {
+            color: #16a34a;
+            font-size: 15px;
+            flex: none;
+            margin-top: 1px;
+        }
+
+        .ku-req-fill {
+            flex: 1;
+            min-height: 130px;
+            border: 1.5px dashed var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 14px;
+        }
+
+        .ku-req-fill p {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .ku-doc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 22px;
+        }
+
+        .ku-doc-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px 4px;
+            border-top: 1px solid var(--border);
+            font-size: 13.5px;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .ku-doc-list li:first-child {
+            border-top: none;
+        }
+
+        .ku-doc-list .ku-doc-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ku-doc-list .li-ic {
+            font-size: 15px;
+        }
+
+        .ku-doc-plus {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #eef2ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            flex: none;
+        }
+
+        .ku-quote {
+            margin-top: auto;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.65;
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+
+        @media(max-width: 900px) {
+            .ku-fasilitas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ku-req-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="brand">
+                <img src="https://www.bankwawaylampung.com/public/assetGuest/img/logo-website.png" alt="Logo"
+                    width="200" height="50">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Produk</a>
+                        <ul class="dropdown">
+                            <li><a href="deposito.html">Deposito</a></li>
+                            <li><a href="pinjaman.html" class="active">Pinjaman</a></li>
+                            <li><a href="tabungan.html">Tabungan</a></li>
+                            <li><a href="kredit dana ceria.html">Kredit Dana Ceria</a></li>
+                            <li><a href="form kredit pegawai.html">Form Kredit Pegawai</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Profil.html">Profil</a></li>
+                    <li><a href="informasi.html">Informasi</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Laporan</a>
+                        <ul class="dropdown">
+                            <li><a href="laporan tahunan.html">Laporan Tahunan</a></li>
+                            <li><a href="laporan keberlanjutan.html">Laporan Keberlanjutan</a></li>
+                            <li><a href="publikasi.html">Laporan Publikasi</a></li>
+                            <li><a href="tata kelola.html">Tata Kelola / GCG</a></li>
+                            <li><a href="pelayanan.html">Pelayanan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="bantuan.html">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-actions">
+                <a href="karir.html" class="nav-extra">Karier</a>
+                <a href="wbs.html" class="btn-wbs">WBS</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <a href="index.html">Beranda</a> <span class="sep">›</span>
+            <a href="pinjaman.html">Produk</a> <span class="sep">›</span>
+            <a href="pinjaman.html">Pinjaman</a> <span class="sep">›</span>
+            <strong>Kredit UMKM</strong>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <img class="hero-bg" src="images/kredit-umkm.jpg" alt="Kredit UMKM">
+        <div class="container">
+            <h1>Kredit Komersil</h1>
+            <p>Mendukung percepatan pertumbuhan bisnis Anda dengan solusi pembiayaan terintegrasi. Kami menyediakan
+                modal
+                kerja dan investasi untuk skala menengah hingga besar dengan proses yang akuntabel.</p>
+            <div class="hero-actions">
+                <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+                    target="_blank" rel="noopener" class="btn btn-primary">Ajukan Sekarang</a>
+                <a href="#detail" class="btn btn-outline-white">Pelajari Selengkapnya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KONTEN ===== -->
+    <section class="tab-section" id="detail">
+        <div class="container tab-wrap">
+
+            <!-- Sidebar -->
+            <aside class="tab-sidebar">
+                <h4>Produk Kami</h4>
+                <p class="tab-sidebar-sub">Solusi Perbankan Terpercaya</p>
+                <ul class="tab-product-list">
+                    <li><a class="tab-product-item" href="kredit-komersil.html"><span class="ic">💳</span> Kredit Modal
+                            Kerja</a></li>
+                    <li><a class="tab-product-item" href="kredit-multiguna.html"><span class="ic">🏛</span> Kredit
+                            Multiguna</a></li>
+                    <li><a class="tab-product-item" href="kredit-pdrs.html"><span class="ic">📈</span> Kredit PDRS</a>
+                    </li>
+                    <li><a class="tab-product-item" href="kredit-subsidi.html"><span class="ic">🪪</span> Kredit Subsidi
+                            0%</a></li>
+                    <li><button class="tab-product-item active" data-target="umkm"><span class="ic">🌐</span> Kredit
+                            UMKM</button></li>
+                </ul>
+                <div class="tab-help-card">
+                    <h5>🎧 Butuh Bantuan?</h5>
+                    <p>Tim kami siap membantu Anda memilih produk kredit yang tepat.</p>
+                    <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+                        target="_blank" rel="noopener" class="btn-tel">Hubungi CS</a>
+                </div>
+            </aside>
+
+            <!-- Main content -->
+            <div class="tab-content">
+
+                <!-- ============ PANEL: KREDIT UMKM ============ -->
+                <div class="tab-panel active" id="panel-umkm">
+
+                    <div class="tab-detail-card">
+                        <div class="tab-detail-top">
+                            <h2>Kredit UMKM Siger</h2>
+                        </div>
+                        <p>Fasilitas kredit modal kerja dan investasi bagi pelaku usaha kecil atau perorangan dengan
+                            usaha
+                            produktif yang sudah berjalan minimal 1 tahun. Kami hadir sebagai mitra strategis
+                            pertumbuhan bisnis
+                            Anda.</p>
+                    </div>
+
+                    <h3 class="ku-section-title">Detail Fasilitas Kredit</h3>
+                    <div class="ku-fasilitas-grid">
+                        <div class="ku-fasilitas-card">
+                            <div class="ku-fasilitas-ic">Rp</div>
+                            <h3>Plafon Pinjaman</h3>
+                            <p>Fleksibilitas pendanaan sesuai kebutuhan ekspansi usaha Anda.</p>
+                            <div class="ku-fasilitas-val">5jt s/d BMPK*</div>
+                            <div class="ku-fasilitas-note">*Batas Maksimum Pemberian Kredit</div>
+                        </div>
+
+                        <div class="ku-fasilitas-card">
+                            <div class="ku-fasilitas-ic">📅</div>
+                            <h3>Jangka Waktu</h3>
+                            <p>Tenor cicilan yang ringan untuk menjaga arus kas tetap sehat.</p>
+                            <div class="ku-fasilitas-val">6 Bulan s/d 5 Tahun</div>
+                        </div>
+
+                        <div class="ku-fasilitas-card">
+                            <div class="ku-fasilitas-ic">%</div>
+                            <h3>Suku Bunga Flat</h3>
+                            <div class="ku-bunga-table">
+                                <div class="ku-bunga-row"><span>JW s/d 2 Thn</span><span>10.0%</span></div>
+                                <div class="ku-bunga-row"><span>JW 2 - 4 Thn</span><span>11.0%</span></div>
+                                <div class="ku-bunga-row"><span>JW 4 - 5 Thn</span><span>12.0%</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ku-req-grid">
+                        <div class="ku-req-card">
+                            <div class="ku-req-head"><span class="ic">🧑‍💼</span>
+                                <h3>Persyaratan Umum</h3>
+                            </div>
+                            <ul class="ku-check-list">
+                                <li><span class="li-ic">✔️</span> Perorangan (WNI) atau Badan Usaha yang telah memiliki
+                                    izin usaha.</li>
+                                <li><span class="li-ic">✔️</span> Usaha produktif yang telah berjalan minimal 1 (satu)
+                                    tahun secara kontinyu.</li>
+                                <li><span class="li-ic">✔️</span> Memiliki rekam jejak kredit yang baik (SLIK OJK).</li>
+                                <li><span class="li-ic">✔️</span> Melampirkan agunan berupa SHM atau SHGB.</li>
+                            </ul>
+                            <div class="ku-req-fill">
+                                <p>Pastikan semua dokumen asli tersedia saat verifikasi.</p>
+                            </div>
+                        </div>
+
+                        <div class="ku-req-card">
+                            <div class="ku-req-head"><span class="ic">📄</span>
+                                <h3>Dokumen Pelengkap</h3>
+                            </div>
+                            <ul class="ku-doc-list">
+                                <li><span class="ku-doc-left"><span class="li-ic">📝</span> Formulir Aplikasi
+                                        Kredit</span><span class="ku-doc-plus">+</span></li>
+                                <li><span class="ku-doc-left"><span class="li-ic">🪪</span> KTP &amp; Kartu Keluarga
+                                        (KK)</span><span class="ku-doc-plus">+</span></li>
+                                <li><span class="ku-doc-left"><span class="li-ic">🏢</span> NIB &amp; NPWP</span><span
+                                        class="ku-doc-plus">+</span></li>
+                                <li><span class="ku-doc-left"><span class="li-ic">📃</span> Rekening Koran (6 Bulan
+                                        Terakhir)</span><span class="ku-doc-plus">+</span></li>
+                                <li><span class="ku-doc-left"><span class="li-ic">📊</span> Laporan Keuangan
+                                        Usaha</span><span class="ku-doc-plus">+</span></li>
+                                <li><span class="ku-doc-left"><span class="li-ic">🏠</span> Sertifikat Jaminan
+                                        (SHM/SHGB)</span><span class="ku-doc-plus">+</span></li>
+                            </ul>
+                            <div class="ku-quote">"Bank Waway Lampung berkomitmen memberikan kemudahan proses
+                                administrasi demi
+                                percepatan pertumbuhan UMKM di Lampung."</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-banner">
+                        <div>
+                            <h2>Siap Mengembangkan Usaha Anda?</h2>
+                            <p>Dapatkan konsultasi gratis mengenai plafon kredit dan skema angsuran terbaik untuk profil
+                                bisnis
+                                Anda.</p>
+                        </div>
+                        <div class="cta-actions">
+                            <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+                                target="_blank" rel="noopener" class="btn btn-primary">Hubungi Account Officer</a>
+                            <a href="#" class="btn btn-outline-white">Cek Simulasi Cicilan</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h5>Bank Waway Lampung</h5>
+                    <p>📍 <a href="https://maps.app.goo.gl/XXQFDXPrbKguNWnZ9?g_st=aw" target="_blank" rel="noopener">Jl.
+                            Diponegoro No.28, Gulak Galik, Kec. Tlk. Betung Utara, Kota Bandar Lampung, Lampung
+                            35212</a></p>
+                    <p>📞 <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+                            target="_blank" rel="noopener">+0721 266 869</a></p>
+                    <p>✉️ <a href="mailto:Bankwawaylampung@yahoo.com">Bankwawaylampung@yahoo.com</a></p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/BankWawayLampung/" target="_blank" rel="noopener"
+                            aria-label="Facebook">f</a>
+                        <a href="https://www.instagram.com/bankwawaylampung/" target="_blank" rel="noopener"
+                            aria-label="Instagram">◎</a>
+                        <a href="https://wa.me/6285382659996" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+                    </div>
+                </div>
+                <div>
+                    <h6>Tautan Cepat</h6>
+                    <ul>
+                        <li><a
+                                href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                                Nasabah</a></li>
+                        <li><a href="tempat-kedudukan.html">Lokasi Kantor Kas</a></li>
+                        <li><a href="deposito.html#simulasi">Suku Bunga</a></li>
+                        <li><a href="karir.html">Karir</a></li>
+                        <li><a href="wbs.html">Whistleblowing System</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6>Produk</h6>
+                    <ul>
+                        <li><a href="tabungan.html">Tabungan</a></li>
+                        <li><a href="pinjaman.html">Pinjaman</a></li>
+                        <li><a href="deposito.html">Deposito</a></li>
+                        <li><a
+                                href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                                Digital</a></li>
+                        <li><a href="#">iBanking</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 Bank Waway Lampung. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="ojkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a4fa0"/>
+      <stop offset="1" stop-color="#0d2f66"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="96" fill="url(#ojkGrad)"/>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.35"/>
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+  <!-- Stylized emblem: three arcs representing O-J-K -->
+  <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round">
+    <circle cx="100" cy="100" r="34" opacity="0.9"/>
+    <path d="M 66 100 A 34 34 0 0 1 100 66" opacity="0.9"/>
+    <path d="M 134 100 A 34 34 0 0 1 100 134" opacity="0.9"/>
+  </g>
+  <!-- Center dot -->
+  <circle cx="100" cy="100" r="8" fill="#ffd23f"/>
+  <!-- Top text -->
+  <text x="100" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#ffffff" letter-spacing="4">OJK</text>
+  <!-- Bottom text -->
+  <text x="100" y="182" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#ffffff" letter-spacing="1">OTORITAS JASA KEUANGAN</text>
+</svg>

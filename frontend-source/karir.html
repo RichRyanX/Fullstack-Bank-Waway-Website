@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Waway Lampung - Karier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Style Tambahan Khusus Halaman Karir -->
+    <style>
+        /* ===== Hero Karir ===== */
+        .karir-hero {
+            position: relative;
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .karir-hero .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .karir-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(100deg, rgba(15, 26, 51, .92) 15%, rgba(15, 26, 51, .55) 75%);
+        }
+
+        .karir-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .karir-badge {
+            display: inline-block;
+            background: #7DD8E0;
+            color: #0f1a33;
+            padding: 7px 16px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .karir-hero h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            max-width: 640px;
+            margin-bottom: 18px;
+        }
+
+        .karir-hero p {
+            font-size: 16px;
+            max-width: 560px;
+            opacity: .88;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .btn-karir-primary {
+            background: #7DD8E0;
+            color: #0f1a33;
+            border: none;
+            padding: 14px 26px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            transition: .2s;
+        }
+
+        .btn-karir-primary:hover {
+            background: #64c9d2
+        }
+
+        /* ===== Stats row ===== */
+        .karir-stats {
+            max-width: var(--container);
+            margin: 50px auto 0;
+            padding: 0 24px;
+            position: relative;
+            z-index: 3;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .karir-stat-culture {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        .karir-stat-culture .ic {
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .karir-stat-culture h4 {
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .karir-stat-culture p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .karir-stat-box {
+            border-radius: var(--radius);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .karir-stat-box.navy {
+            background: var(--navy);
+        }
+
+        .karir-stat-box.blue {
+            background: var(--blue);
+        }
+
+        .karir-stat-box .num {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .karir-stat-box .lbl {
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            opacity: .9;
+        }
+
+        /* ===== Filter / search ===== */
+        .karir-filter-section {
+            padding: 70px 0 20px;
+        }
+
+        .karir-filter-bar {
+            display: flex;
+            gap: 16px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .karir-filter-field {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .karir-filter-field label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Wrapper: ikon dan input dalam satu flex row, tidak lagi absolute
+           supaya ikon tidak pernah menimpa teks placeholder */
+        .karir-input-wrap {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            transition: .18s;
+        }
+
+        .karir-input-wrap:focus-within {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+        }
+
+        .karir-input-wrap .ic {
+            flex: none;
+            width: 44px;
+            display: flex;
+            margin-top: 5px;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .karir-input-wrap input,
+        .karir-input-wrap select {
+            flex: 1;
+            width: 100%;
+            min-width: 0;
+            border: none;
+            outline: none;
+            padding: 13px 16px 13px 0;
+            font-size: 14.5px;
+            font-family: inherit;
+            color: var(--text);
+            background: transparent;
+        }
+
+        .karir-filter-field.select-field .karir-input-wrap select {
+            appearance: none;
+            padding-right: 36px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            cursor: pointer;
+        }
+
+        .btn-filter {
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            padding: 13px 26px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14.5px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: .2s;
+            white-space: nowrap;
+            flex: none;
+        }
+
+        .btn-filter:hover {
+            background: #14284b;
+        }
+
+        /* ===== Job grid ===== */
+        .karir-jobs-section {
+            padding: 40px 0 90px;
+        }
+
+        .karir-job-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .job-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: .25s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .job-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .job-tag {
+            display: inline-block;
+            background: var(--bg-soft);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 999px;
+        }
+
+        .job-save {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 16px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px;
+            transition: .2s;
+        }
+
+        .job-save:hover {
+            color: var(--blue);
+        }
+
+        .job-card h3 {
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .job-loc {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .job-card p.job-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .job-card-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-lamar {
+            flex: 1;
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: .2s;
+            text-align: center;
+        }
+
+        .btn-lamar:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-download {
+            width: 44px;
+            flex: none;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-muted);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .btn-download:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* CTA card inside grid */
+        .job-card-cta {
+            background: var(--navy);
+            border-radius: var(--radius);
+            padding: 30px 26px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .job-card-cta .ic {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .job-card-cta h4 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .job-card-cta p {
+            font-size: 13.5px;
+            color: #c7d3ef;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .job-card-cta .btn-drop {
+            background: #7DD8E0;
+            color: #0f1a33;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .job-card-cta .btn-drop:hover {
+            background: #64c9d2;
+        }
+
+        /* ===== Proses Rekrutmen ===== */
+        .proses-section {
+            background: linear-gradient(180deg, var(--bg-soft) 0%, #dfe6fa 100%);
+            padding: 80px 0;
+        }
+
+        .proses-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+            position: relative;
+        }
+
+        .proses-steps::before {
+            content: "";
+            position: absolute;
+            top: 34px;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: var(--border);
+            z-index: 0;
+        }
+
+        .proses-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .proses-step .ic-circle {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--blue);
+        }
+
+        .proses-step h5 {
+            font-size: 16px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .proses-step p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 210px;
+        }
+
+        /* ===== Responsive ===== */
+        @media(max-width:900px) {
+            .karir-stats {
+                grid-template-columns: 1fr;
+                margin-top: 24px;
+            }
+
+            .karir-job-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proses-steps {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 40px;
+            }
+
+            .proses-steps::before {
+                display: none;
+            }
+
+            .karir-hero h1 {
+                font-size: 32px;
+            }
+
+            .karir-filter-bar {
+                align-items: stretch;
+            }
+
+            .btn-filter {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="brand">
+                <img src="https://www.bankwawaylampung.com/public/assetGuest/img/logo-website.png" alt="Logo"
+                    width="200" height="50">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Produk</a>
+                        <ul class="dropdown">
+                            <li><a href="deposito.html">Deposito</a></li>
+                            <li><a href="pinjaman.html">Pinjaman</a></li>
+                            <li><a href="tabungan.html">Tabungan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Profil.html">Profil</a></li>
+                    <li><a href="informasi.html">Informasi</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Laporan</a>
+                        <ul class="dropdown">
+                            <li><a href="laporan tahunan.html">Laporan Tahunan</a></li>
+                            <li><a href="laporan keberlanjutan.html">Laporan Keberlanjutan</a></li>
+                            <li><a href="publikasi.html">Laporan Publikasi</a></li>
+                            <li><a href="tata kelola.html">Tata Kelola / GCG</a></li>
+                            <li><a href="pelayanan.html">Pelayanan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="bantuan.html">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-actions">
+                <a href="karir.html" class="nav-extra" style="color:var(--blue);font-weight:700">Karier</a>
+                <a href="wbs.html" class="btn-wbs">WBS</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO KARIR ===== -->
+    <section class="karir-hero">
+        <img class="hero-bg" src="images/karir-hero.jpg" alt="Tim Bank Waway Lampung">
+        <div class="container">
+            <span class="karir-badge">Bergabunglah dengan Kami</span>
+            <h1>Saatnya Bergabung dan Berkembang Bersama Masyarakat</h1>
+            <p>Kami mencari individu berbakat yang berdedikasi untuk memajukan perekonomian daerah dan memberikan
+                layanan
+                perbankan yang amanah bagi masyarakat Lampung.</p>
+            <button class="btn-karir-primary"
+                onclick="window.location.href='https://script.google.com/macros/s/AKfycbwI71v0XXHJj4tPUw_K0vuUbYOSc05d3AyC81-6t4XgCzgi8MC1lYTxwzI9Gpuw-566/exec'">
+                Lamar Sekarang
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== STATS ROW ===== -->
+    <div class="karir-stats">
+        <div class="karir-stat-culture">
+            <div class="ic">👥</div>
+            <h4>Budaya Kerja Kolaboratif</h4>
+            <p>Lingkungan yang mendukung pertumbuhan profesional dan keseimbangan kehidupan kerja di Bank Waway Lampung.
+            </p>
+        </div>
+        <div class="karir-stat-box navy">
+            <div class="num">2+</div>
+            <div class="lbl">Kantor Kas</div>
+        </div>
+        <div class="karir-stat-box blue">
+            <div class="num">70+</div>
+            <div class="lbl">Talenta Profesional</div>
+        </div>
+    </div>
+
+    <!-- ===== FILTER / SEARCH ===== -->
+    <section class="karir-filter-section">
+        <div class="container">
+            <form class="karir-filter-bar" id="karirFilterForm">
+                <div class="karir-filter-field">
+                    <label for="cariPosisi">Cari Posisi</label>
+                    <div class="karir-input-wrap">
+                        <span class="ic">🔍</span>
+                        <input type="text" id="cariPosisi" placeholder="Contoh: Relationship Manager...">
+                    </div>
+                </div>
+                <button type="submit" class="btn-filter">Filter</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== JOB LISTING ===== -->
+    <section class="karir-jobs-section" id="lowongan">
+        <div class="container">
+            <div class="karir-job-grid">
+
+                <article class="job-card">
+                    <div class="job-card-top">
+                        <span class="job-tag">Full-Time</span>
+                        <button class="job-save" aria-label="Simpan">🔖</button>
+                    </div>
+                    <h3>Senior Relationship Manager</h3>
+                    <div class="job-loc">📍 Bandar Lampung, HQ</div>
+                    <p class="job-desc">Bertanggung jawab untuk mengelola portofolio nasabah prioritas dan mengembangkan
+                        strategi penetrasi pasar di wilayah Lampung.</p>
+                    <div class="job-card-actions">
+                        <a href="https://script.google.com/macros/s/AKfycbwI71v0XXHJj4tPUw_K0vuUbYOSc05d3AyC81-6t4XgCzgi8MC1lYTxwzI9Gpuw-566/exec"
+                            class="btn-lamar">Lamar Sekarang</a>
+                        <button class="btn-download" aria-label="Unduh Detail">⬇️</button>
+                    </div>
+                </article>
+
+                <article class="job-card">
+                    <div class="job-card-top">
+                        <span class="job-tag">Management Trainee</span>
+                        <button class="job-save" aria-label="Simpan">🔖</button>
+                    </div>
+                    <h3>Officer Development Program</h3>
+                    <div class="job-loc">📍 Multiple Locations</div>
+                    <p class="job-desc">Program akselerasi karier bagi lulusan baru untuk menjadi pemimpin masa depan di
+                        industri perbankan Lampung.</p>
+                    <div class="job-card-actions">
+                        <a href="https://script.google.com/macros/s/AKfycbwI71v0XXHJj4tPUw_K0vuUbYOSc05d3AyC81-6t4XgCzgi8MC1lYTxwzI9Gpuw-566/exec"
+                            class="btn-lamar">Lamar Sekarang</a>
+                        <button class="btn-download" aria-label="Unduh Detail">⬇️</button>
+                    </div>
+                </article>
+
+                <article class="job-card">
+                    <div class="job-card-top">
+                        <span class="job-tag">IT &amp; Tech</span>
+                        <button class="job-save" aria-label="Simpan">🔖</button>
+                    </div>
+                    <h3>Security Engineer</h3>
+                    <div class="job-loc">📍 Bandar Lampung</div>
+                    <p class="job-desc">Menjaga integritas data perbankan dan infrastruktur digital dari ancaman siber
+                        yang berkembang pesat.</p>
+                    <div class="job-card-actions">
+                        <a href="https://script.google.com/macros/s/AKfycbwI71v0XXHJj4tPUw_K0vuUbYOSc05d3AyC81-6t4XgCzgi8MC1lYTxwzI9Gpuw-566/exec"
+                            class="btn-lamar">Lamar Sekarang</a>
+                        <button class="btn-download" aria-label="Unduh Detail">⬇️</button>
+                    </div>
+                </article>
+
+                <article class="job-card">
+                    <div class="job-card-top">
+                        <span class="job-tag">Retail</span>
+                        <button class="job-save" aria-label="Simpan">🔖</button>
+                    </div>
+                    <h3>Teller &amp; Customer Service</h3>
+                    <div class="job-loc">📍 Metro Branch</div>
+                    <p class="job-desc">Menjadi wajah terdepan Bank Waway dalam memberikan pelayanan transaksi harian
+                        yang ramah dan efisien.</p>
+                    <div class="job-card-actions">
+                        <a href="https://script.google.com/macros/s/AKfycbwI71v0XXHJj4tPUw_K0vuUbYOSc05d3AyC81-6t4XgCzgi8MC1lYTxwzI9Gpuw-566/exec "
+                            class="btn-lamar">Lamar Sekarang</a>
+                        <button class="btn-download" aria-label="Unduh Detail">⬇️</button>
+                    </div>
+                </article>
+
+                <article class="job-card">
+                    <div class="job-card-top">
+                        <span class="job-tag">Operation</span>
+                        <button class="job-save" aria-label="Simpan">🔖</button>
+                    </div>
+                    <h3>Head of Credit Operations</h3>
+                    <div class="job-loc">📍 Bandar Lampung, HQ</div>
+                    <p class="job-desc">Mengawasi proses administrasi kredit dan memastikan kepatuhan terhadap regulasi
+                        perbankan yang berlaku.</p>
+                    <div class="job-card-actions">
+                        <a href="https://script.google.com/macros/s/AKfycbwI71v0XXHJj4tPUw_K0vuUbYOSc05d3AyC81-6t4XgCzgi8MC1lYTxwzI9Gpuw-566/exec"
+                            class="btn-lamar">Lamar Sekarang</a>
+                        <button class="btn-download" aria-label="Unduh Detail">⬇️</button>
+                    </div>
+                </article>
+
+                <div class="job-card-cta">
+                    <div class="ic">👤➕</div>
+                    <h4>Posisi Tidak Ditemukan?</h4>
+                    <p>Kirimkan CV Anda ke database talenta kami untuk peluang di masa mendatang.</p>
+                    <button class="btn-drop">Drop Resume</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROSES REKRUTMEN ===== -->
+    <section class="proses-section">
+        <div class="container">
+            <h2 class="section-title">Proses Rekrutmen Kami</h2>
+            <p class="section-sub">Sistem seleksi yang transparan dan kompetitif untuk mendapatkan talenta terbaik.</p>
+
+            <div class="proses-steps">
+                <div class="proses-step">
+                    <div class="ic-circle">📝</div>
+                    <h5>Pendaftaran Online</h5>
+                    <p>Kirimkan berkas melalui portal karier resmi.</p>
+                </div>
+                <div class="proses-step">
+                    <div class="ic-circle">🧠</div>
+                    <h5>Tes Assessment</h5>
+                    <p>Evaluasi kemampuan kognitif dan perilaku.</p>
+                </div>
+                <div class="proses-step">
+                    <div class="ic-circle">💬</div>
+                    <h5>Wawancara</h5>
+                    <p>Diskusi mendalam dengan tim HR dan User.</p>
+                </div>
+                <div class="proses-step">
+                    <div class="ic-circle">✅</div>
+                    <h5>Onboarding</h5>
+                    <p>Selamat bergabung di keluarga besar Bank Waway.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h5>Bank Waway Lampung</h5>
+                    <p>📍 <a href="https://maps.app.goo.gl/XXQFDXPrbKguNWnZ9?g_st=aw" target="_blank" rel="noopener">Jl.
+                            Diponegoro No.28, Gulak Galik, Kec. Tlk. Betung Utara, Kota Bandar Lampung, Lampung
+                            35212</a></p>
+                    <p>📞 <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+                            target="_blank" rel="noopener">+0721 266 869</a></p>
+                    <p>✉️ <a href="mailto:Bankwawaylampung@yahoo.com">Bankwawaylampung@yahoo.com</a></p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/BankWawayLampung/" target="_blank" rel="noopener"
+                            aria-label="Facebook">f</a>
+                        <a href="https://www.instagram.com/bankwawaylampung/" target="_blank" rel="noopener"
+                            aria-label="Instagram">◎</a>
+                        <a href="https://wa.me/6285382659996" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+                    </div>
+                </div>
+                <div>
+                    <h6>Tautan Cepat</h6>
+                    <ul>
+                        <li><a
+                                href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                                Nasabah</a></li>
+                        <li><a href="tempat-kedudukan.html">Lokasi Kantor Kas</a></li>
+                        <li><a href="deposito.html#simulasi">Suku Bunga</a></li>
+                        <li><a href="karir.html">Karir</a></li>
+                        <li><a href="wbs.html">Whistleblowing System</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6>Produk</h6>
+                    <ul>
+                        <li><a href="tabungan.html">Tabungan</a></li>
+                        <li><a href="pinjaman.html">Pinjaman</a></li>
+                        <li><a href="deposito.html">Deposito</a></li>
+                        <li><a
+                                href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                                Digital</a></li>
+                        <li><a href="#">iBanking</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 Bank Waway Lampung. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+
+    <!-- Script Filter Sederhana (client-side) -->
+    <script>
+        document.getElementById('karirFilterForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const keyword = document.getElementById('cariPosisi').value.trim().toLowerCase();
+            document.querySelectorAll('.job-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = (!keyword || title.includes(keyword)) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,580 @@
+@extends('layouts.public')
+
+@section('title', 'Bank Waway Lampung - Kredit Pensiun')
+
+@section('styles')
+<style>
+  .tab-panel {
+    display: none;
+  }
+
+  .tab-panel.active {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tab-product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab-product-item,
+  .tab-formdana-btn {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
+    color: var(--navy, #1e3a8a);
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: left;
+    line-height: 1.35;
+  }
+
+  .tab-product-item .ic,
+  .tab-formdana-btn .ic {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .tab-product-item:hover,
+  .tab-formdana-btn:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .tab-product-item.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  }
+
+  .tab-formdana-btn {
+    grid-template-columns: 32px 1fr auto;
+    margin: 10px 0 20px;
+    background: #ffffff;
+    color: var(--navy, #1e3a8a);
+  }
+
+  .tab-formdana-btn .arrow-ic {
+    font-size: 14px;
+    color: #2563eb;
+    transition: transform 0.2s ease;
+  }
+
+  .tab-formdana-btn:hover .arrow-ic {
+    transform: translateX(3px);
+  }
+
+  .kp-detail-top h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .kp-detail-top p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .pens-top-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .pens-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pens-info-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .pens-info-ic {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #eef4ff;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex: none;
+  }
+
+  .pens-info-card h4 {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .pens-info-card p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  .pens-rate-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 30px 26px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .pens-rate-big {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .pens-rate-sub {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #93c5fd;
+    margin-bottom: 26px;
+  }
+
+  .pens-rate-plafond {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .pens-rate-plafond-sub {
+    font-size: 11.5px;
+    color: #cbd5f5;
+  }
+
+  .pens-tabs-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .pens-tabs-nav {
+    display: flex;
+  }
+
+  .pens-tab-btn {
+    flex: 1;
+    background: #f8fafc;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 18px 10px;
+    cursor: pointer;
+  }
+
+  .pens-tab-btn.active {
+    background: #eef4ff;
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  .pens-tabs-body {
+    padding: 26px 28px;
+  }
+
+  .pens-tab-panel {
+    display: none;
+  }
+
+  .pens-tab-panel.active {
+    display: block;
+  }
+
+  .syarat-list li {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .syarat-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .syarat-list .li-ic {
+    color: var(--blue);
+    font-size: 14px;
+    flex: none;
+    margin-top: 2px;
+  }
+
+  .dokumen-grid3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .dokumen-item3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+  }
+
+  .dokumen-item3 .ic {
+    font-size: 15px;
+    flex: none;
+  }
+
+  .dokumen-item3 span.txt {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .pens-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #eef4ff;
+    border: 1px solid #d7e6fd;
+    border-radius: var(--radius);
+    padding: 26px 30px;
+  }
+
+  .pens-cta-banner h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .pens-cta-banner p {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 460px;
+  }
+
+  .pens-cta-actions {
+    display: flex;
+    gap: 12px;
+    flex: none;
+  }
+
+  .btn-navy-solid {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 13px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .btn-navy-solid:hover {
+    background: #1e293b;
+  }
+
+  .btn-outline-blue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 13px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .btn-outline-blue:hover {
+    background: #eef4ff;
+  }
+
+  @media(max-width: 900px) {
+    .pens-top-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dokumen-grid3 {
+      grid-template-columns: 1fr;
+    }
+
+    .pens-cta-banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .pens-cta-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .pens-tabs-nav {
+      flex-direction: column;
+    }
+  }
+</style>
+@endsection
+
+@section('content')
+<div class="breadcrumb-row">
+  <div class="container">
+    <a href="{{ route('home') }}">Beranda</a> <span class="sep">›</span>
+    <a href="{{ route('public.kredit.pinjaman') }}">Produk</a> <span class="sep">›</span>
+    <a href="{{ route('public.kredit.pinjaman') }}">Pinjaman</a> <span class="sep">›</span>
+    <strong>Kredit Pensiun</strong>
+  </div>
+</div>
+
+<section class="hero">
+  <img class="hero-bg" src="{{ asset('frontend/images/kredit-konsumer.jpg') }}" alt="Kredit Pensiun">
+  <div class="container">
+    <h1>Kredit Pensiun</h1>
+    <p>Fasilitas pembiayaan konsumsi khusus untuk masa purna bakti yang tenang dan sejahtera bagi pensiunan PNS.</p>
+    <div class="hero-actions">
+      <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0" target="_blank"
+        rel="noopener" class="btn btn-primary">Ajukan Sekarang →</a>
+    </div>
+  </div>
+</section>
+
+<section class="tab-section" id="detail">
+  <div class="container tab-wrap">
+
+    <aside class="tab-sidebar">
+      <h4>Produk Kami</h4>
+      <p class="tab-sidebar-sub">Solusi Perbankan Terpercaya</p>
+
+      <ul class="tab-product-list">
+        <li>
+          <a href="{{ route('public.kredit.kredit-konsumer') }}" class="tab-product-item">
+            <span class="ic">💳</span>
+            <span>Kredit Pegawai <br>(PNS/BUMD)</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-pppk') }}" class="tab-product-item">
+            <span class="ic">📇</span>
+            <span>Kredit PPPK</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-pppk-paruh-waktu') }}" class="tab-product-item">
+            <span class="ic">⏱</span>
+            <span>Kredit PPPK Paruh Waktu</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-tukin') }}" class="tab-product-item">
+            <span class="ic">💎</span>
+            <span>Kredit Tukin</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-b2b') }}" class="tab-product-item">
+            <span class="ic">🔗</span>
+            <span>Kredit B2B</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-prapensiun') }}" class="tab-product-item">
+            <span class="ic">⏳</span>
+            <span>Kredit Prapensiun</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('public.kredit.kredit-pensiun') }}" class="tab-product-item active">
+            <span class="ic">🧓</span>
+            <span>Kredit Pensiun</span>
+          </a>
+        </li>
+      </ul>
+
+      <a href="https://script.google.com/macros/s/AKfycbzCoxyMx3HMzXGYa3f9OGP2os-UNWfQoYgg3G1Ef1U8hhgvFbMvyybEvZAUQfZ2xBYW/exec"
+        class="tab-formdana-btn">
+        <span class="ic">📝</span>
+        <span>Form Dana Ceria</span>
+      </a>
+
+      <div class="tab-help-card">
+        <h5>🎧 Butuh Bantuan?</h5>
+        <p>Tim spesialis kami siap membantu menjelaskan produk yang tepat untuk Anda.</p>
+        <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0" target="_blank"
+          rel="noopener" class="btn-tel">Hubungi Kami</a>
+      </div>
+    </aside>
+
+    <div class="tab-content">
+
+      <div class="tab-panel active" id="panel-pensiun">
+
+        <div class="tab-detail-card kp-detail-top">
+          <div>
+            <h2>Kredit Pensiun Pegawai Negeri Sipil</h2>
+            <p>Fasilitas pembiayaan konsumsi khusus untuk masa purna bakti yang tenang dan sejahtera bagi pensiunan PNS.
+            </p>
+          </div>
+        </div>
+
+        <div class="pens-top-grid">
+          <div class="pens-left-col">
+            <div class="pens-info-card">
+              <div class="pens-info-ic">🕐</div>
+              <div>
+                <h4>Jangka Waktu</h4>
+                <p>Mulai dari 12 hingga 240 bulan (20 tahun).</p>
+              </div>
+            </div>
+            <div class="pens-info-card">
+              <div class="pens-info-ic">🛡</div>
+              <div>
+                <h4>Agunan Utama</h4>
+                <p>Hanya menggunakan SK Pensiun asli.</p>
+              </div>
+            </div>
+            <div class="pens-info-card">
+              <div class="pens-info-ic">🖇</div>
+              <div>
+                <h4>Biaya Admin</h4>
+                <p>Flat Rp1.300.000 per pengajuan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pens-rate-card">
+            <div class="pens-rate-big">17.10%</div>
+            <div class="pens-rate-sub">SUKU BUNGA ANUITAS / TAHUN</div>
+            <div class="pens-rate-plafond">Rp5jt - Rp500jt</div>
+            <div class="pens-rate-plafond-sub">Plafond Pinjaman Fleksibel</div>
+          </div>
+        </div>
+
+        <div class="pens-tabs-card">
+          <div class="pens-tabs-nav">
+            <button class="pens-tab-btn active" data-tab="persyaratan">Persyaratan</button>
+            <button class="pens-tab-btn" data-tab="dokumen">Dokumen Pendukung</button>
+          </div>
+          <div class="pens-tabs-body">
+
+            <div class="pens-tab-panel active" id="pens-tab-persyaratan">
+              <ul class="syarat-list">
+                <li><span class="li-ic">✔</span> Merupakan Pensiunan Pegawai Negeri Sipil (PNS).</li>
+                <li><span class="li-ic">✔</span> Usia maksimal 75 tahun pada saat kredit jatuh tempo.</li>
+                <li><span class="li-ic">✔</span> Sistem pembayaran gaji menggunakan payroll (melalui Bank).</li>
+                <li><span class="li-ic">✔</span> Mempunyai atau bersedia membuka rekening Tabungan Bank Waway.</li>
+              </ul>
+            </div>
+
+            <div class="pens-tab-panel" id="pens-tab-dokumen">
+              <div class="dokumen-grid3">
+                <div class="dokumen-item3"><span class="ic">🪪</span><span class="txt">E-KTP & Kartu
+                    Keluarga</span></div>
+                <div class="dokumen-item3"><span class="ic">📃</span><span class="txt">NPWP Pribadi</span></div>
+                <div class="dokumen-item3"><span class="ic">📄</span><span class="txt">SK Pensiun Asli</span></div>
+                <div class="dokumen-item3"><span class="ic">💳</span><span class="txt">Rekening Koran 3 Bln</span>
+                </div>
+                <div class="dokumen-item3"><span class="ic">📃</span><span class="txt">NCR / Daftar Pensiun</span>
+                </div>
+                <div class="dokumen-item3"><span class="ic">🖼</span><span class="txt">Pas Foto Terbaru</span></div>
+                <div class="dokumen-item3"><span class="ic">📝</span><span class="txt">Surat Kuasa Potong Manfaat
+                    Pensiun</span></div>
+                <div class="dokumen-item3"><span class="ic">💰</span><span class="txt">Tabungan Bank Waway</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="pens-cta-banner">
+          <div>
+            <h3>Siap untuk Mewujudkan Rencana Anda?</h3>
+            <p>Gunakan kalkulator pinjaman kami atau hubungi petugas kami untuk simulasi angsuran yang lebih
+              mendetail.</p>
+          </div>
+          <div class="pens-cta-actions">
+            <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+              target="_blank" rel="noopener" class="btn-navy-solid">Ajukan Sekarang →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+@endsection
+
+@section('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tabBtns = document.querySelectorAll('.pens-tab-btn');
+    var tabPanels = document.querySelectorAll('.pens-tab-panel');
+
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-tab');
+        tabBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        tabPanels.forEach(function (p) { p.classList.remove('active'); });
+        document.getElementById('pens-tab-' + target).classList.add('active');
+      });
+    });
+  });
+</script>
+@endsection

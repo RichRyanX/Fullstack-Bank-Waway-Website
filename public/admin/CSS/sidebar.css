@@ -1,0 +1,44 @@
+.sidebar-brand-logo {
+  max-height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== Shared sidebar addition: Logout button ===== */
+/* Linked on every CMS page alongside style.css and dashboard.css */
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.nav-item-logout {
+  color: #ff8080;
+  margin-top: 4px;
+}
+
+.nav-item-logout:hover {
+  background: rgba(255, 80, 80, 0.12);
+  color: #ff9d9d;
+}
+
+/* ===== Dashboard: stretch stat cards to fill the row evenly ===== */
+/* Used when only 2 stat cards remain (e.g. after removing the WBS card) */
+.stat-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.stat-grid-2 .stat-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .stat-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

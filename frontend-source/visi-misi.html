@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Waway Lampung - Visi &amp; Misi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Style Tambahan Khusus Halaman Visi & Misi -->
+  <style>
+    .vm-section {
+      padding: 60px 0 90px;
+    }
+
+    .vm-breadcrumb {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .vm-breadcrumb a {
+      color: var(--text-muted);
+    }
+
+    .vm-breadcrumb a:hover {
+      color: var(--blue);
+    }
+
+    .vm-breadcrumb strong {
+      color: var(--navy);
+    }
+
+    .vm-title-row {
+      margin-bottom: 28px;
+    }
+
+    .vm-title-row h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.5px;
+      position: relative;
+      padding-bottom: 14px;
+      display: inline-block;
+    }
+
+    .vm-title-row h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 56px;
+      height: 4px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+
+    /* VISI */
+    .vm-visi-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .vm-visi-deco {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      width: 220px;
+      height: 220px;
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .vm-visi-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .5px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .vm-visi-card blockquote {
+      font-size: 19px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.6;
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* MISI */
+    .vm-misi-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: .5px;
+      margin-bottom: 20px;
+    }
+
+    .vm-misi-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .vm-misi-grid-2 {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .vm-misi-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+
+    .vm-misi-item .ic {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--bg-soft);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .vm-misi-item h5 {
+      font-size: 16px;
+      color: var(--navy);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .vm-misi-item p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .vm-misi-item.horizontal {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .vm-misi-item.horizontal .ic {
+      margin-bottom: 0;
+      flex: none;
+    }
+
+    .vm-misi-item.highlight {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+
+    .vm-misi-item.highlight .ic {
+      background: rgba(255, 255, 255, .15);
+      color: #fff;
+    }
+
+    .vm-misi-item.highlight h5 {
+      color: #fff;
+    }
+
+    .vm-misi-item.highlight p {
+      color: #c7d3ef;
+    }
+
+    /* Bottom banner */
+    .vm-banner {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 60px 40px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .vm-banner h3 {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .vm-banner p {
+      font-size: 14px;
+      color: #c7d3ef;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    @media(max-width:900px) {
+
+      .vm-misi-grid-3,
+      .vm-misi-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand">
+        <img src="https://www.bankwawaylampung.com/public/assetGuest/img/logo-website.png" alt="Logo" width="200"
+          height="50">
+        <rect width="40" height="40" rx="9" fill="#9E1B22" />
+        <path
+          d="M11 27V13h7.2c3 0 5 1.6 5 4.1 0 1.7-1 2.9-2.4 3.4 1.7.5 2.8 1.8 2.8 3.7 0 2.7-2.1 4.3-5.3 4.3H11h0Zm4-8.4h2.6c1.2 0 1.9-.6 1.9-1.6s-.7-1.6-1.9-1.6H15v3.2Zm0 5.9h2.9c1.4 0 2.2-.6 2.2-1.8s-.8-1.8-2.2-1.8H15v3.6Z"
+          fill="#fff" />
+        </svg>
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Beranda</a></li>
+          <li class="has-dropdown">
+            <a href="#">Produk</a>
+            <ul class="dropdown">
+              <li><a href="deposito.html">Deposito</a></li>
+              <li><a href="pinjaman.html">Pinjaman</a></li>
+              <li><a href="tabungan.html">Tabungan</a></li>
+
+            </ul>
+          </li>
+          <li><a href="Profil.html" class="active">Profil</a></li>
+          <li><a href="informasi.html">Informasi</a></li>
+          <li class="has-dropdown">
+            <a href="#">Laporan</a>
+            <ul class="dropdown">
+              <li><a href="laporan tahunan.html">Laporan Tahunan</a></li>
+              <li><a href="laporan keberlanjutan.html">Laporan Keberlanjutan</a></li>
+              <li><a href="publikasi.html">Laporan Publikasi</a></li>
+              <li><a href="tata kelola.html">Tata Kelola / GCG</a></li>
+              <li><a href="pelayanan.html">Pelayanan</a></li>
+            </ul>
+          </li>
+          <li><a href="bantuan.html">Bantuan</a></li>
+        </ul>
+      </nav>
+      <div class="navbar-actions">
+        <a href="karir.html" class="nav-extra">Karier</a>
+        <a href="pelayanan.html#wbs" class="btn-wbs">WBS</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <img class="page-hero-bg" src="images/profil-hero.jpg" alt="Kantor Pusat Bank Waway Lampung">
+    <div class="container">
+      <h1>Tentang Kami</h1>
+      <div class="breadcrumb"><a href="index.html">Beranda</a> / Profil Perusahaan</div>
+    </div>
+  </section>
+
+  <!-- ===== VISI & MISI CONTENT ===== -->
+  <section class="vm-section">
+    <div class="container profil-wrap">
+
+      <!-- Sidebar -->
+      <aside class="profil-sidebar">
+        <h4>Profil</h4>
+        <ul class="profil-side-menu">
+          <li><a href="Profil.html#pendirian">🕘 Pendirian Perusahaan</a></li>
+          <li><a href="tempat-kedudukan.html">📍 Tempat Kedudukan</a></li>
+          <li><a href="maksud-tujuan.html">📋 Maksud dan Tujuan Serta Kegiatan Usaha</a></li>
+          <li><a href="perijinan-legalitas.html">✅ Perijinan dan Legalitas Usaha</a></li>
+          <li><a href="modal.html">💳 Modal</a></li>
+          <li><a href="susunan-pengurus.html">👥 Susunan Pengurus</a></li>
+          <li><a href="visi-misi.html" class="active">👁️ Visi &amp; Misi</a></li>
+          <li><a href="prestasi-penghargaan.html">🏆 Prestasi dan Penghargaan</a></li>
+          <li><a href="Profil.html#pengurus">👤 Pengurus</a></li>
+          <li><a href="#">⬇ Download Company Profile</a></li>
+        </ul>
+        <div class="pdf-download">
+          <div>
+            <strong>Dokumen Perusahaan</strong>
+            <span>Profil lengkap dalam PDF</span>
+          </div>
+          <a href="#" class="btn btn-white">⬇ PDF</a>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <div class="profil-main">
+
+        <div class="vm-breadcrumb">
+          <a href="index.html">Beranda</a> &nbsp;›&nbsp;
+          <a href="Profil.html">Profil</a> &nbsp;›&nbsp;
+          <strong>Visi &amp; Misi</strong>
+        </div>
+
+        <div class="vm-title-row">
+          <h1>Visi &amp; Misi</h1>
+        </div>
+
+        <!-- VISI -->
+        <div class="vm-visi-card">
+          <svg class="vm-visi-deco" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 110 C 60 40, 160 40, 200 110 C 160 180, 60 180, 20 110 Z" fill="none" stroke="#CBD5E1"
+              stroke-width="10" />
+            <circle cx="110" cy="110" r="34" fill="none" stroke="#CBD5E1" stroke-width="10" />
+          </svg>
+          <div class="vm-visi-label">✨ VISI</div>
+          <blockquote>"Menjadi Bank milik Pemerintah Daerah yang Sehat, Prima dalam Pelayanan serta berperan dalam
+            meningkatkan Perekonomian masyarakat di wilayah Provinsi Lampung."</blockquote>
+        </div>
+
+        <!-- MISI -->
+        <div class="vm-misi-label">🚩 MISI</div>
+
+        <div class="vm-misi-grid-3">
+          <div class="vm-misi-item">
+            <div class="ic">📈</div>
+            <h5>Mendorong Pertumbuhan</h5>
+            <p>Membantu pertumbuhan ekonomi masyarakat dan pelaku usaha mikro di seluruh wilayah Provinsi Lampung.</p>
+          </div>
+          <div class="vm-misi-item">
+            <div class="ic">⚡</div>
+            <h5>Layanan Inovatif</h5>
+            <p>Menyediakan layanan perbankan yang inovatif, cepat, dan transparan melalui teknologi mutakhir.</p>
+          </div>
+          <div class="vm-misi-item">
+            <div class="ic">🕸️</div>
+            <h5>Kerjasama Strategis</h5>
+            <p>Membangun jaringan kerjasama yang kuat dengan berbagai stakeholder untuk kemajuan daerah.</p>
+          </div>
+        </div>
+
+        <div class="vm-misi-grid-2">
+          <div class="vm-misi-item horizontal">
+            <div class="ic">👥</div>
+            <div>
+              <h5>Lingkungan Profesional</h5>
+              <p>Menciptakan lingkungan kerja yang profesional, kondusif, dan berorientasi pada pengembangan SDM
+                unggul.</p>
+            </div>
+          </div>
+          <div class="vm-misi-item horizontal highlight">
+            <div class="ic">🛡️</div>
+            <div>
+              <h5>Kepercayaan Publik</h5>
+              <p>Membangun dan menjaga kepercayaan masyarakat melalui tata kelola perusahaan yang baik dan
+                integritas tinggi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closing banner -->
+        <div class="vm-banner">
+          <h3>Bersama Membangun Lampung</h3>
+          <p>Berdedikasi untuk pertumbuhan ekonomi yang inklusif dan berkelanjutan di seluruh penjuru Provinsi
+            Lampung.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h5>Bank Waway Lampung</h5>
+          <p>📍 <a href="https://maps.app.goo.gl/XXQFDXPrbKguNWnZ9?g_st=aw" target="_blank" rel="noopener">Jl.
+              Diponegoro No.28, Gulak Galik, Kec. Tlk. Betung Utara, Kota Bandar Lampung, Lampung 35212</a></p>
+          <p>📞 <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0"
+              target="_blank" rel="noopener">+0721 266 869</a></p>
+          <p>✉️ <a href="mailto:Bankwawaylampung@yahoo.com">Bankwawaylampung@yahoo.com</a></p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/BankWawayLampung/" target="_blank" rel="noopener"
+              aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/bankwawaylampung/" target="_blank" rel="noopener"
+              aria-label="Instagram">◎</a>
+            <a href="https://wa.me/6285382659996" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+          </div>
+        </div>
+        <div>
+          <h6>Tautan Cepat</h6>
+          <ul>
+            <li><a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan Nasabah</a></li>
+            <li><a href="tempat-kedudukan.html">Lokasi Kantor Kas</a></li>
+            <li><a href="deposito.html#simulasi">Suku Bunga</a></li>
+            <li><a href="karir.html">Karir</a></li>
+            <li><a href="wbs.html">Whistleblowing System</a></li>
+          </ul>
+        </div>
+        <div>
+          <h6>Produk</h6>
+          <ul>
+            <li><a href="tabungan.html">Tabungan</a></li>
+            <li><a href="pinjaman.html">Pinjaman</a></li>
+            <li><a href="deposito.html">Deposito</a></li>
+            <li><a
+                href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan
+                Digital</a></li>
+            <li><a href="#">iBanking</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Bank Waway Lampung. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

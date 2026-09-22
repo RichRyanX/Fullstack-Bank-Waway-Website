@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Waway Lampung - Whistleblowing System (WBS)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Style Tambahan Khusus Halaman Pelayanan / WBS -->
+    <style>
+        /* ===== Hero WBS ===== */
+        .wbs-hero-section {
+            padding: 64px 0 70px;
+        }
+
+        .wbs-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .wbs-eyebrow-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--navy);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 999px;
+            margin-bottom: 22px;
+        }
+
+        .wbs-hero-grid h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -.5px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .wbs-hero-grid>div>p {
+            color: var(--text-muted);
+            font-size: 15.5px;
+            line-height: 1.75;
+            max-width: 520px;
+            margin-bottom: 28px;
+        }
+
+        .wbs-feature-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .wbs-feature-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid var(--border);
+            background: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .wbs-hero-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .wbs-hero-img img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+        }
+
+        /* ===== Main Section ===== */
+        .wbs-main-section {
+            padding: 10px 0 90px;
+        }
+
+        .wbs-main-grid {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ===== Form Card ===== */
+        .wbs-form-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 34px;
+        }
+
+        .wbs-form-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--navy);
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 26px;
+        }
+
+        .wbs-form-title .ic {
+            color: var(--blue);
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: .3px;
+            color: var(--text);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .form-group select,
+        .form-group textarea,
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-size: 14.5px;
+            font-family: inherit;
+            color: var(--text);
+            background: #fff;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .wbs-dropzone {
+            border: 1.5px dashed var(--border);
+            border-radius: 12px;
+            padding: 34px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s;
+            background: var(--bg-soft);
+        }
+
+        .wbs-dropzone:hover {
+            border-color: var(--blue);
+        }
+
+        .wbs-dropzone .ic {
+            font-size: 26px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .wbs-dropzone .dz-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .wbs-dropzone .dz-sub {
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+
+        .wbs-dropzone input[type="file"] {
+            display: none;
+        }
+
+        .wbs-identitas-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .wbs-identitas-head h4 {
+            font-size: 17px;
+            color: var(--navy);
+        }
+
+        .anon-toggle-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 24px;
+            flex: none;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switch .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: #cbd5e1;
+            border-radius: 999px;
+            transition: .2s;
+        }
+
+        .switch .slider::before {
+            content: "";
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            top: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .2s;
+        }
+
+        .switch input:checked+.slider {
+            background: var(--blue);
+        }
+
+        .switch input:checked+.slider::before {
+            transform: translateX(18px);
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .btn-simpan-laporan {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .2s;
+            float: right;
+        }
+
+        .btn-simpan-laporan:hover {
+            background: #1d4ed8;
+        }
+
+        /* ===== Sidebar / Multi-column Grid ===== */
+        .wbs-sidebar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .wbs-side-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .wbs-side-card h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 22px;
+        }
+
+        .wbs-step {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .wbs-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .wbs-step .num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: none;
+        }
+
+        .wbs-step h6 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .wbs-step p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ===== Kanal Lainnya Card ===== */
+        .wbs-kanal-card {
+            background: var(--navy);
+            border-radius: var(--radius);
+            padding: 32px;
+            color: #fff;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wbs-kanal-card h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .wbs-kanal-card>p {
+            font-size: 13px;
+            color: #c7d3ef;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .wbs-kanal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .wbs-kanal-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            transition: background 0.2s ease;
+        }
+
+        .wbs-kanal-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .wbs-kanal-item .ic {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .wbs-kanal-item .info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 3px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .wbs-kanal-item .lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #97a6cc;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .wbs-kanal-item .val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            word-break: break-word;
+        }
+
+        /* ===== Quote Card ===== */
+        .wbs-quote-card {
+            grid-column: 1 / -1;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .wbs-quote-card .mark {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1;
+            flex: none;
+        }
+
+        .wbs-quote-card p {
+            font-size: 14px;
+            color: var(--navy);
+            font-style: italic;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Responsive Breakpoints */
+        @media(max-width:900px) {
+            .wbs-hero-grid,
+            .form-row-2,
+            .wbs-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .wbs-hero-grid {
+                gap: 32px;
+            }
+
+            .wbs-hero-img img {
+                height: 240px;
+            }
+
+            .btn-simpan-laporan {
+                width: 100%;
+                justify-content: center;
+                float: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="brand">
+                <img src="https://www.bankwawaylampung.com/public/assetGuest/img/logo-website.png" alt="Logo" width="200" height="50">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Produk</a>
+                        <ul class="dropdown">
+                            <li><a href="deposito.html">Deposito</a></li>
+                            <li><a href="pinjaman.html">Pinjaman</a></li>
+                            <li><a href="tabungan.html">Tabungan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Profil.html">Profil</a></li>
+                    <li><a href="informasi.html">Informasi</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Laporan</a>
+                        <ul class="dropdown">
+                            <li><a href="laporan tahunan.html">Laporan Tahunan</a></li>
+                            <li><a href="laporan keberlanjutan.html">Laporan Keberlanjutan</a></li>
+                            <li><a href="publikasi.html">Laporan Publikasi</a></li>
+                            <li><a href="tata kelola.html">Tata Kelola / GCG</a></li>
+                            <li><a href="pelayanan.html">Pelayanan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="bantuan.html">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-actions">
+                <a href="karir.html" class="nav-extra">Karier</a>
+                <a href="wbs.html" class="btn-wbs active">WBS</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO WBS ===== -->
+    <section class="wbs-hero-section" id="wbs">
+        <div class="container">
+            <div class="wbs-hero-grid">
+                <div>
+                    <span class="wbs-eyebrow-pill">🛡️ Sistem Pelaporan Pelanggaran</span>
+                    <h1>Whistleblowing System (WBS)</h1>
+                    <p>Bank Waway Lampung berkomitmen menjunjung tinggi nilai integritas dan profesionalisme. WBS adalah
+                        sarana bagi Anda untuk melaporkan segala bentuk indikasi pelanggaran, kecurangan (fraud), atau
+                        perilaku tidak etis yang terjadi di lingkungan bank dengan jaminan kerahasiaan identitas.</p>
+                    <div class="wbs-feature-row">
+                        <span class="wbs-feature-badge">🔒 Anonimitas Terjamin</span>
+                        <span class="wbs-feature-badge">⚖️ Sesuai Regulasi OJK</span>
+                    </div>
+                </div>
+                <div class="wbs-hero-img">
+                    <img src="images/wbs-hero.jpg" alt="Kantor Bank Waway Lampung">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT: PROSEDUR + KANAL ===== -->
+    <section class="wbs-main-section">
+        <div class="container">
+            <div class="wbs-main-grid">
+                <div class="wbs-sidebar">
+
+                    <!-- Prosedur WBS -->
+                    <div class="wbs-side-card">
+                        <h4>Prosedur WBS</h4>
+
+                        <div class="wbs-step">
+                            <div class="num">1</div>
+                            <div>
+                                <h6>Penyampaian</h6>
+                                <p>Pelapor mengirimkan aduan melalui formulir ini atau kanal resmi lainnya.</p>
+                            </div>
+                        </div>
+
+                        <div class="wbs-step">
+                            <div class="num">2</div>
+                            <div>
+                                <h6>Verifikasi</h6>
+                                <p>Tim audit internal melakukan validasi data dan bukti awal dalam 3x24 jam.</p>
+                            </div>
+                        </div>
+
+                        <div class="wbs-step">
+                            <div class="num">3</div>
+                            <div>
+                                <h6>Investigasi</h6>
+                                <p>Pemeriksaan mendalam dilakukan terhadap pihak terkait yang dilaporkan.</p>
+                            </div>
+                        </div>
+
+                        <div class="wbs-step">
+                            <div class="num">4</div>
+                            <div>
+                                <h6>Tindak Lanjut</h6>
+                                <p>Pemberian sanksi atau tindakan korektif sesuai kebijakan internal bank.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kanal Lainnya -->
+                    <div class="wbs-kanal-card">
+                        <h4>Kanal Lainnya</h4>
+                        <p>Selain formulir web, Anda juga dapat melaporkan melalui:</p>
+
+                        <div class="wbs-kanal-list">
+                            <div class="wbs-kanal-item">
+                                <div class="ic">✉️</div>
+                                <div class="info">
+                                    <div class="lbl">Email Auditor</div>
+                                    <div class="val">Bankwawaylampung@yahoo.com</div>
+                                </div>
+                            </div>
+
+                            <div class="wbs-kanal-item">
+                                <div class="ic">📞</div>
+                                <div class="info">
+                                    <div class="lbl">Hotline 24/7</div>
+                                    <div class="val">+0721 266 869</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quote Card -->
+                    <div class="wbs-quote-card">
+                        <div class="mark">“</div>
+                        <p>Integritas adalah melakukan hal yang benar, bahkan ketika tidak ada orang yang melihat.</p>
+                    </div>
+
+                </div>
+
+                <!-- CTA Banner -->
+                <div class="tab-cta-banner">
+                    <div>
+                        <h3>Whistleblowing System</h3>
+                        <p>Sistem Pelaporan Pelanggaran PT BPR WAWAY LAMPUNG</p>
+                    </div>
+                    <a href="https://script.google.com/macros/s/AKfycbxTkiICPnXbB17y3EEUAfb6RuMn_VQu8asQtu7gxXNw0WDdFEFNl_f6WzPeKTHSYpqBLg/exec" class="btn-find">Laporkan Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h5>Bank Waway Lampung</h5>
+                    <p>📍 <a href="https://maps.app.goo.gl/XXQFDXPrbKguNWnZ9?g_st=aw" target="_blank" rel="noopener">Jl. Diponegoro No.28, Gulak Galik, Kec. Tlk. Betung Utara, Kota Bandar Lampung, Lampung 35212</a></p>
+                    <p>📞 <a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">+0721 266 869</a></p>
+                    <p>✉️ <a href="mailto:Bankwawaylampung@yahoo.com">Bankwawaylampung@yahoo.com</a></p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/BankWawayLampung/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+                        <a href="https://www.instagram.com/bankwawaylampung/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+                        <a href="https://wa.me/6285382659996" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+                    </div>
+                </div>
+                <div>
+                    <h6>Tautan Cepat</h6>
+                    <ul>
+                        <li><a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan Nasabah</a></li>
+                        <li><a href="tempat-kedudukan.html">Lokasi Kantor Kas</a></li>
+                        <li><a href="deposito.html#simulasi">Suku Bunga</a></li>
+                        <li><a href="karir.html">Karir</a></li>
+                        <li><a href="wbs.html">Whistleblowing System</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6>Produk</h6>
+                    <ul>
+                        <li><a href="tabungan.html">Tabungan</a></li>
+                        <li><a href="pinjaman.html">Pinjaman</a></li>
+                        <li><a href="deposito.html">Deposito</a></li>
+                        <li><a href="https://api.whatsapp.com/send/?phone=6285382659996&text&type=phone_number&app_absent=0">Layanan Digital</a></li>
+                        <li><a href="#">iBanking</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 Bank Waway Lampung. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <!-- Script Form WBS -->
+    <script>
+        const anonToggle = document.getElementById('anonToggle');
+        const namaLengkap = document.getElementById('namaLengkap');
+        const emailWa = document.getElementById('emailWa');
+
+        if (anonToggle) {
+            anonToggle.addEventListener('change', () => {
+                const isAnon = anonToggle.checked;
+                if (namaLengkap) {
+                    namaLengkap.disabled = isAnon;
+                    namaLengkap.value = isAnon ? '' : namaLengkap.value;
+                    namaLengkap.placeholder = isAnon ? 'Dikirim sebagai anonim' : 'Masukkan nama Anda';
+                }
+                if (emailWa) {
+                    emailWa.disabled = isAnon;
+                    emailWa.value = isAnon ? '' : emailWa.value;
+                    emailWa.placeholder = isAnon ? 'Dikirim sebagai anonim' : 'Untuk konfirmasi status';
+                }
+            });
+        }
+
+        const lampiranFile = document.getElementById('lampiranFile');
+        if (lampiranFile) {
+            lampiranFile.addEventListener('change', () => {
+                const dz = document.querySelector('.wbs-dropzone .dz-title');
+                if (lampiranFile.files.length > 0 && dz) {
+                    dz.textContent = lampiranFile.files[0].name;
+                }
+            });
+        }
+
+        const wbsForm = document.getElementById('wbsForm');
+        if (wbsForm) {
+            wbsForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Terima kasih. Laporan Anda telah tersimpan dan akan segera ditindaklanjuti oleh tim auditor internal.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+
+</html>
