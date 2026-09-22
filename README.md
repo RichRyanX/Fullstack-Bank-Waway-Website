@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend-source/img/logo-bank-waway.png" alt="Bank Waway Lampung Logo" width="320">
+  <img src="docs/logo-website.png" alt="Bank Waway Lampung Logo" width="320">
 </p>
 
 <h1 align="center">Fullstack Website & Admin CMS Bank Waway Lampung </h1>
