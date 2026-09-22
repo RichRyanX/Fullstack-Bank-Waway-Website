@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="frontend-source/img/logo.png" alt="Bank Waway Lampung Logo" width="180">
+  <img src="frontend-source/img/logo-bank-waway.png" alt="Bank Waway Lampung Logo" width="320">
 </p>
 
-<h1 align="center">Bank Waway Lampung — Fullstack Website & Admin CMS</h1>
+<h1 align="center">Fullstack Website & Admin CMS Bank Waway Lampung </h1>
 
 <p align="center">
   <strong>⚠️ Draft project made by a student intern at Bank Waway Lampung.<br>
@@ -59,23 +59,25 @@ The project consists of two main parts:
 - **Pengaturan** — site settings and badge/certification image management
 
 ## Project Structure
-├── admin/ # Admin panel source
-├── app/ # Laravel application code (Models, Controllers, etc.)
-├── bootstrap/ # Laravel bootstrap files
-├── config/ # Laravel configuration
-├── database/ # Migrations, seeders, factories
-├── docs/ # Supplementary docs (Google Apps Script integration notes, etc.)
-├── frontend-source/ # Static public website source (HTML/CSS/JS)
-├── public/ # Laravel public directory (served admin panel + entry point)
-├── resources/ # Blade views, assets
-├── routes/ # API & web route definitions
-├── storage/ # Laravel storage (logs, uploads — gitignored where appropriate)
-├── tests/ # PHPUnit Feature & Unit tests
-├── .env.example # Template for required environment variables
-├── composer.json # PHP dependencies
-├── package.json # JS/build dependencies
-└── artisan # Laravel CLI entry point
 
+```text
+├── admin/                 # Admin panel source
+├── app/                    # Laravel application code (Models, Controllers, etc.)
+├── bootstrap/               # Laravel bootstrap files
+├── config/                    # Laravel configuration
+├── database/                    # Migrations, seeders, factories
+├── docs/                           # Supplementary docs (Google Apps Script integration notes, etc.)
+├── frontend-source/                  # Static public website source (HTML/CSS/JS)
+├── public/                              # Laravel public directory (served admin panel + entry point)
+├── resources/                              # Blade views, assets
+├── routes/                                    # API & web route definitions
+├── storage/                                      # Laravel storage (logs, uploads — gitignored where appropriate)
+├── tests/                                           # PHPUnit Feature & Unit tests
+├── .env.example                                        # Template for required environment variables
+├── composer.json                                          # PHP dependencies
+├── package.json                                              # JS/build dependencies
+└── artisan                                                     # Laravel CLI entry point
+```
 
 ## Setup & Installation
 
@@ -134,8 +136,7 @@ This project's internship deliverables also include:
 
 ## Author
 
-**Ryanda Aditya Irawan**
-Informatics Engineering, Institut Teknologi Sumatera (ITERA)
+**Ryanda Aditya Irawan** — Informatics Engineering, Institut Teknologi Sumatera (ITERA)
 Cybersecurity/SOC-focused student intern at Bank Waway Lampung
 
 ## License
